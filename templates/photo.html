@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>美图分享 - 农夫乐园官网</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="static/css/css.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/iconfont.css" rel="stylesheet" type="text/css" />
+    
+</head>
+<body class="mb90">
+    
+<div class="logo"><a href="/Mobile"><img src="static/images/201604062008554821632.png" width="150" height="39" /></a></div>
+<div class="photo">
+    <ul class="flx">
+        
+        {foreach from=$article_list item='item'}
+        <li><a href="photo_detail.php?article_id={$item.article_id}" class="db f_wh"><img src="{$item.article_img}" class="wp100 db" /><span>梦幻灯光展</span></a></li>
+        {/foreach}
+
+
+    </ul>
+</div>
+
+    <!--div class="footer">© 2015-2030 田园熊出没乐园版权所有</div!-->
+    {include file="nav.html"}
+
+    
+    <script src="static/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="static/js/swipe.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+    
+    <script language="javascript" type="text/javascript">
+        var number = 2;
+        $(document).ready(function () {
+            var noMore = false;
+            var range = 0;             //距下边界长度/单位px
+            var totalheight = 0;
+
+            $(window).scroll(function () {
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if (($(document).height() - range) <= totalheight) {
+                    GetData();
+                }
+            });
+        });
+
+        function GetData() {
+            $.ajax({
+                type: 'get',
+                url: 'photo.php',
+                data: 'pageindex=' + number,
+                dataType:'json',
+                timeout: 60000,
+                success: function (res) {
+                    var html = '';
+                    if (res != "") {
+                        
+                        for(var i=0;i<res.length;i++){
+                            html += '<li><a href="photo_detail.php?article_id='+res[i]['article_id']+'" class="db f_wh"><img src="'+res[i]['article_img']+'" class="wp100 db" /><span>'+res[i]['article_title']+'</span></a></li>'+"\r\n";
+                        }
+                        $(".flx").append(html);
+                        number++;
+                    }
+                },
+                error: function () {
+                    alert('连接服务器错误，请稍后再试！');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

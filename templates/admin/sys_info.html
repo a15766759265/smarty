@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>网站信息</title>  
+    <link rel="stylesheet" href="../static/admin/css/pintuer.css">
+    <link rel="stylesheet" href="../static/admin/css/admin.css">
+    <script src="../static/admin/js/jquery.js"></script>
+    <script src="../static/admin/js/pintuer.js"></script>  
+    <link rel="stylesheet" href="../static/kindeditor/themes/default/default.css" />
+    <script src="../static/kindeditor/kindeditor-min.js"></script>
+    <script src="../static/kindeditor/lang/zh_CN.js"></script>
+    <script>
+      var editor;
+      KindEditor.ready(function(K) {
+        editor = K.create('textarea[name="site_link"]', {
+          allowFileManager : true
+        });
+      });
+      KindEditor.ready(function(K) {
+        editor = K.create('textarea[name="company_desc"]', {
+          allowFileManager : true
+        });
+      });
+      </script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 网站信息</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="">
+      {foreach from=$set_list item='item'}
+      <div class="form-group">
+        <div class="label">
+          <label>{$item.set_title}：</label>
+        </div>
+        <div class="field">
+          {if $item['set_name'] eq 'site_link' || $item['set_name'] eq 'company_desc'}
+              <textarea name="{$item.set_name}" id="" cols="100" rows="10" >{$item.set_value}</textarea>
+          {else}
+          <input type="text" class="input" name="{$item.set_name}" value="{$item.set_value|strip_tags}" />
+          {/if}
+          <div class="tips"></div>
+        </div>
+      </div>
+      {/foreach}
+
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body></html>

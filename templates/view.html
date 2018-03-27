@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>景区动态 - 农夫乐园官网</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="static/css/css.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/iconfont.css" rel="stylesheet" type="text/css" />
+    
+</head>
+<body class="mb90">
+    
+<div class="banner rel">
+    <div id="banner_box" class="box_swipe">
+        <ul>
+                    <li><a href="http://www.zjnby.com/Home/View?ID=277"><img src="static/images/201612221152057407454.jpg!640320"></a></li>
+                    <li><a href="http://www.zjnby.com/Mobile/Mall"><img src="static/images/201610281114470512541.jpg!640320"></a></li>
+                    <li><a href="/mobile"><img src="static/images/201609251534303848285.jpg!640320"></a></li>
+                    <li><a href="1"><img src="static/images/201604071522086287848.jpg!640320"></a></li>
+                    <li><a href="/mobile"><img src="static/images/201604070942172924671.jpg!640320"></a></li>
+                    <li><a href="/mobile"><img src="static/images/201603301424399421526.jpg!640320"></a></li>
+    
+        </ul>
+        <div class="banner_page">
+        </div>
+    </div>
+</div>
+<div class="content pd15">
+    <div class="news">
+
+                     {foreach from=$view_info item='item'}
+
+                 <a href="view_detail.php?article_id={$item.article_id}" class="db">
+                    <dl class="rel">
+                        <dt>{$item.article_desc}</dt>
+                        <dd class="abs"><i class="iconfont g9">&#xe605;</i></dd>
+                    </dl>
+                </a>   
+                {/foreach}
+    
+
+    </div>
+</div>
+
+
+
+    <!--div class="footer">© 2015-2030 田园熊出没乐园版权所有</div!-->
+    {include file="nav.html"}
+
+    
+    <script src="static/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="static/js/swipe.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+    
+<script language="javascript" type="text/javascript">
+    var number = 2;
+    $(document).ready(function () {
+        var noMore = false;
+        var range = 50;             //距下边界长度/单位px
+        var totalheight = 0;
+
+        $(window).scroll(function () {
+            var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+            totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+            if (($(document).height() - range) <= totalheight) {
+                GetData();
+            }
+        });
+    });
+
+    function GetData() {
+        $.ajax({
+            type: 'get',
+            url: 'ListNewsByAjax',
+            data: 'pageindex=' + number,
+            timeout: 60000,
+            success: function (res) {
+                var html = '';
+                if (res != "") {
+                    $(".news").append(res);
+                    number++;
+                }
+            },
+            error: function () {
+                alert('连接服务器错误，请稍后再试！');
+            }
+        });
+    }
+</script>
+ 
+
+</body>
+</html>

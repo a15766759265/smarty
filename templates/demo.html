@@ -1,0 +1,108 @@
+hello world {$name}
+
+{* 这是注释的内容 - smarty 注释 *}
+
+{* 加载配置文件 *}
+{config_load file="common.conf"}
+
+{#keyword#} {* 输出配置文件当中的变量 - 方法1 *}
+
+{$smarty.config.pageTitle} {* 输出配置文件当中的变量 - 方法2 *}
+
+{* 判断结构 *}
+
+{if $name eq 'html'}
+	这是HTML内容
+{elseif $name eq 'php'}
+	这是PHP内容
+{else}
+	其他内容
+{/if}
+
+{* smarty 循环结构*}
+
+{foreach from=$demo_list item='item' key='key' name="demo_list"}
+	{$item}<br />
+{foreachelse}
+ 循环内容不存在
+{/foreach}
+
+<br />
+
+{section name='val' loop=$demo_list}
+	{$demo_list[val]}<br />
+{/section}
+
+{* include 语法用来包含文件 *}
+
+{include file='demo1.html' }
+
+{* literal 这个标签一般用来防止跟HTML标签冲突 所解决的加载文件问题*}
+{literal}
+	<style>
+		body{
+			/*background-color:red;*/
+		}
+	</style>
+{/literal}
+
+{php}
+
+	//phpinfo();
+
+{/php}
+
+{assign  var="name" value="Man is Fatally Slain. Death Causes Loneliness, Feeling of Isolation.2"}
+
+name的值为：{$name}
+
+{* 输出image 标签*}
+
+{html_image file="bg-sidebar.gif"}
+
+
+{* 输出日期的标签*}
+{html_select_date}
+
+{*输出当前时间 时分秒*}
+{html_select_time use_24_hours=true}
+
+
+{* 变量调节器 *}
+
+{* count_characters 统计字符长度 *}
+{$name|count_characters}  
+
+cat[连接字符串]
+
+{$name|cat:'是超文本标记语言'}
+
+<br />
+<br />
+
+统计段数
+{$articleTitle|count_paragraphs}
+
+<br />
+<br />
+
+输出时间格式
+{$smarty.now|date_format:"%Y:%B:%e:%A %H:%M:%S"}
+
+<br />
+<br />
+
+当变量不存在的时候，给默认值
+{$mytitle|default:"默认内容"}
+
+<br />
+<br />
+
+转换成HTML编码
+{$title|escape:"html"}
+
+<br />
+<br />
+
+截取的意思 truncate:截取的长度:"替换的字符内容"
+{$title|truncate:30:"-----"}

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>首页 - 农夫乐园官网</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="static/css/css.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/iconfont.css" rel="stylesheet" type="text/css" />
+    
+</head>
+<body class="mb90">
+    
+<div class="banner rel">
+    <div id="banner_box" class="box_swipe">
+        <ul>
+            {foreach from=$article_hot item='item'}
+                <li><a href="#"><img src="{$item.article_img}"></a></li> 
+            {/foreach}
+        </ul>
+        <div class="banner_page">
+        </div>
+    </div>
+</div>
+
+<div class="content pd15">
+    <div class="index_nav">
+                <a href="intro.php" class="db f_wh index_nav_left i_n_1">
+                    <dl class="rel">
+                        <dt class="abs">景点介绍<i class="iconfont db">&#xe601;</i></dt>
+                        <dd><img src="static/images/201603301425054136095.jpg!430220" class="db wp100" /></dd>
+                    </dl>
+                </a> 
+                <a href="view.php" class="db f_wh index_nav_right i_n_2">
+                    <dl class="rel">
+                        <dt class="abs">景区动态<i class="iconfont db">&#xe601;</i></dt>
+                        <dd><img src="static/images/201603301425157171988.jpg!430220" class="db wp100" /></dd>
+                    </dl>
+                </a> 
+                <a href="photo.php" class="db f_wh index_nav_left i_n_3">
+                    <dl class="rel">
+                        <dt class="abs">美图分享<i class="iconfont db">&#xe601;</i></dt>
+                        <dd><img src="static/images/201607200123387406598.jpg!430220" class="db wp100" /></dd>
+                    </dl>
+                </a> 
+                <a href="user.php" class="db f_wh index_nav_right i_n_4">
+                    <dl class="rel">
+                        <dt class="abs">会员中心<i class="iconfont db">&#xe601;</i></dt>
+                        <dd><img src="static/images/201603301425090828194.jpg!430220" class="db wp100" /></dd>
+                    </dl>
+                </a> 
+       
+      
+    </div>
+</div>
+
+    <!--div class="footer">© 2015-2030 田园熊出没乐园版权所有</div!-->
+    {include file="nav.html"}
+
+    
+    <script src="static/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="static/js/swipe.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+    
+</body>
+</html>

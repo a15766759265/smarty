@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0027)http://www.zjnby.com/Member -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>我的 - 农夫乐园官网</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="./static/css/css.css" rel="stylesheet" type="text/css">
+    <link href="./static/css/iconfont.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="mb80">
+    <div class="user">
+        <dl class="rel">
+            <dt class="abs"><img src="{$user_info.user_img}" width="60" height="60"></dt>
+            <dd>
+                <strong class="n f16 db fw">手机号：{$user_info.user_phone}</strong>
+                <span class="db f12"><em class="fw">登录时间：{$user_info.user_login|date_format:"%Y:%m:%e %H:%M:%S"}</em><a href="login.php?action=logout" class="ml15 f_wh">退出</a></span>
+            </dd>
+        </dl>
+    </div>
+    <div class="cate">
+        <ul>
+            <li class="cate_n01"><a href="http://www.zjnby.com/Member/ListOrder"><i class="iconfont"></i><strong class="n">订单管理</strong></a></li>
+           
+            <li class="cate_n05"><a href="http://www.zjnby.com/Member/Password"><i class="iconfont"></i><strong class="n">修改密码</strong></a></li>
+        </ul>
+    </div>
+    {include file="nav.html"} 
+
+
+</body></html>
